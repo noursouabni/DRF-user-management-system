@@ -1,32 +1,36 @@
-'''from django.urls import path
+"""
+URL configuration for FormAI project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
+from django.contrib import admin
+from django.urls import path, include
+from users import views
 from django.contrib.auth import views as auth_views
-from . import views
-from .views import api_signup, signup
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-urlpatterns = [
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('api/signup/', api_signup, name='api_signup'),  # API-based signup
-    path('signup/', signup, name='signup'),
-    path('api/login/', TokenObtainPairView.as_view(), name='login'),
-
-]'''
-from django.urls import path
-from .views import SignupAPIView, UserAPIView,LoginAPIView,UserProfileAPIView
-from .views import CustomTokenObtainPairView
-from rest_framework_simplejwt.views import TokenRefreshView
+from users.views import SignupAPIView, home,signup_page,UserProfileAPIView
 from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path('signup/', SignupAPIView.as_view(), name='signup'),
-    path('users/', UserAPIView.as_view()),  # For GET all users and POST
-    path('users/<int:id_user>/', UserAPIView.as_view()), 
-    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),  # Login endpoint
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
-    path('login/', LoginAPIView.as_view(), name='login'), 
-    path('profile/', UserProfileAPIView.as_view(), name='profile_api'),  #drf
-    path('profile-page/', TemplateView.as_view(template_name='users/userprofile.html'), name='profile_page'),  #html 
-    
-]
+    path("admin/", admin.site.urls),
+    path('', TemplateView.as_view(template_name='users/homepage.html'), name='homepage'),
+    path('admin/', admin.site.urls),
+    path('', include('users.urls')),
+    path('signup/', SignupAPIView.as_view(), name='signup'), # DRF API endpoint
+    path('signup-page/', TemplateView.as_view(template_name='users/signup.html'), name='signup_page'),
+    path('login-page/', TemplateView.as_view(template_name='users/login.html'), name='login_page'),
+    path('profile/', UserProfileAPIView.as_view(), name='user-profile'),
+]   
+
