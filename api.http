@@ -1,0 +1,62 @@
+### Signup API Request
+POST http://127.0.0.1:8000/signup/
+Content-Type: application/json
+
+{
+    "name_user": "chouchou",
+    "type_user": "simple User",
+    "password":"pwdsimple",
+    "id_document_filled": 1,
+    "id_document_received": 2
+}
+###
+POST http://127.0.0.1:8000/login/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc3OTk3LCJpYXQiOjE3MzQzNzYxOTcsImp0aSI6IjgwZDI5NWU5ZWQyNDRhZjZiYTEyOGUyZGQzZGZkYTRjIiwidXNlcl9pZCI6MTIsIm5hbWVfdXNlciI6Im5ld191c2VyIiwidHlwZV91c2VyIjoiIn0.uCKNo-0MvVgBlQqnDpoC-GDfSVZNIoal8uF6aKZxQHI
+Content-Type: application/json
+
+{
+  "name_user": "nours",
+  "password": "admin1234"
+}
+
+### get all users
+GET http://127.0.0.1:8000/users/
+ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eX
+Accept: application/json
+### get a single user
+GET http://127.0.0.1:8000/users/1/
+ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eX
+Accept: application/json
+
+### update a user
+PUT http://127.0.0.1:8000/users/8/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc0MDkxLCJpYXQiOjE3MzQzNzIyOTEsImp0aSI6ImMxMmZhZWZhZTdmNDRlYzdhZGZkYzJkMzhiOWI3ZTc4IiwidXNlcl9pZCI6MTAsIm5hbWVfdXNlciI6ImFkbWluX3VzZXIiLCJ0eXBlX3VzZXIiOiIifQ.PZha27ZPnNMAJK2wkZpQV_OeWrla7mYYRBG02XU0obI
+Content-Type: application/json
+
+{
+  "name_user": "Rania",
+  "type_user": "Simple User",
+  "password": "pwd",
+  "id_document_filled": 4,
+  "id_document_received": 8
+}
+### delete a user
+DELETE http://127.0.0.1:8000/users/9/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc3OTk3LCJpYXQiOjE3MzQzNzYxOTcsImp0aSI6IjgwZDI5NWU5ZWQyNDRhZjZiYTEyOGUyZGQzZGZkYTRjIiwidXNlcl9pZCI6MTIsIm5hbWVfdXNlciI6Im5ld191c2VyIiwidHlwZV91c2VyIjoiIn0.uCKNo-0MvVgBlQqnDpoC-GDfSVZNIoal8uF6aKZxQHI
+Accept: application/json
+###
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+  "name_user": "admin_user",
+  "password": "admin123"
+}
+###
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+  "name_user": "new_user",
+  "password": "password123"
+}
